@@ -1,14 +1,28 @@
 import './App.css';
 import Form from './components/Form';
+import React, { Component } from 'react'
+import ResultNow from './components/ResultNow'
 
-function App() {
-  return (
-    <div className="App">
+class App extends Component {
+
+  state = {
+    cW: ''
+  }
+
+  currentWeather = (cW) => {
+    this.setState({ cW })
+  }
+
+  render() {
+    return (
+      <div className="App">
         <div className="container">
-         <Form />
+          <Form currentWeather={this.currentWeather} />
+          {this.state.cW ? <ResultNow cW={this.state.cW} /> : null}
         </div>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default App;

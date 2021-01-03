@@ -46,7 +46,7 @@ export default class Form extends Component {
         
         axios.get(url)
         .then(response => {
-            console.log(response);
+            console.log(response.data);
         })
     }
 
@@ -58,12 +58,12 @@ export default class Form extends Component {
 
         axios.get(url)
         .then(response => {
-            console.log(response);
+            this.props.currentWeather(response.data.data)
+            
         })
 
     }
-
-
+ 
     render() {
         return (
             <div> 
