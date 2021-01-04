@@ -2,32 +2,36 @@ import React, { Component } from 'react'
 import './Styles/ResultNow.css'
 
 export default class Result extends Component {
-    render() {
+    
+    roundTemp = temp =>   Math.round(temp)
 
+    checkDayTime = () => {
 
-        const { cW } = this.props
-
+    }
+    
+    render() { 
+        const { cW } = this.props 
+ 
+         console.log(cW);
+         
         return (
-            <div className="bg-light result">
+            <div className="result">
               <h6 className="mt-0">CURRENT CONDITIONS</h6>
-                <div >
-                    
-                    <div>Temperature: {Math.round(cW[0].temp)}
-                    &#8451; <img src={`https://www.weatherbit.io/static/img/icons/${cW[0].weather.icon}.png`} /></div>
+                <div> 
+                    <div>Temperature:  {this.roundTemp(cW.main.temp - 273.15)}
+                    &#8451; <span><img src={`http://openweathermap.org/img/wn/${cW.weather[0].icon}.png`} /> </span></div>
                     <div >
                      <ul>
-                            <li className="dd"><b>Real Feel:</b>    
-                            <span className="ml-4 float-right">  {Math.round(cW[0].app_temp)}</span> </li>
+                            <li className="dd"><b>Real Feel: {this.roundTemp(cW.main.feels_like - 273.15)}</b>    
+                            <span className="ml-4 float-right">   </span> </li>
                      
                      
                             <li className="dd"><b>Humidity:</b>         
-                              <span className="ml-4 float-right"> {Math.round(cW[0].rh)}% </span></li>
-                   
-                     
-                            <li className="dd"><b>Wind Speed:</b>         
-                            <span className="ml-4 float-right"> {Math.round(cW[0].wind_spd)}m/s</span> </li>
-                       </ul>
-
+                              <span className="ml-4 float-right">{cW.main.humidity}% </span></li>
+                    
+                            <li className="dd"><b>Weather condition:</b>         
+                            <span className="ml-4 float-right">  {cW.weather[0].description}</span> </li>
+                       </ul> 
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ img{
 
 .result {
     border: 1px solid blue;
-    width: 600px;
+    max-width: 600px;
     margin: 20px auto;
     padding: 30px;
 }
@@ -12,7 +12,7 @@ img{
 
 ul{
     list-style: none;
-    width: 250px;
+    width: 340px;
     text-align: left;
     margin: auto;
 }

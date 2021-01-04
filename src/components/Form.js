@@ -6,7 +6,9 @@ export default class Form extends Component {
     
     state = {
         city: '',
-        postal: ''
+        // postal: '',
+        api_key: '2b6796993859f84b8808fad453263671',
+        error: '' 
     }
     
     getTodayDate() {
@@ -27,8 +29,7 @@ export default class Form extends Component {
         var yyyy = yesterday.getFullYear();
 
         yesterday = yyyy + '-' + mm + '-' + dd;
-        return yesterday
-
+        return yesterday 
     }
  
     handleChange =(e)=> {
@@ -38,30 +39,39 @@ export default class Form extends Component {
     }
     
 
-    handleHourly = (e) => {
-        e.preventDefault();
-        const api_key = "a3800d82739d466790523f48e15c3fc0"
+    // handleHourly = (e) => {
+    //     e.preventDefault();
 
-        const url =`https://api.weatherbit.io/v2.0/history/hourly?postal_code=${this.state.postal}&city=${this.state.city}&start_date=${this.getYesterdayDate()}&end_date=${this.getTodayDate()}&key=${api_key}`
+    //     const url =`http://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&zip=${this.state.postal}&appid=${this.state.api_key}`
         
-        axios.get(url)
-        .then(response => {
-            console.log(response.data);
-        })
-    }
+    //     axios.get(url)
+    //     .then(response => {
+    //         console.log(response.data);
+    //     })
+    //     .catch(error => {
+    //         this.setState({
+    //             error: 'city not found'
+    //         })
+    //     })
+    // }
 
     handleNow=(e)=> {
         e.preventDefault();
-        const api_key = "a3800d82739d466790523f48e15c3fc0"
 
-        const url= `http://api.weatherbit.io/v2.0/current?key=${api_key}&postal_code=${this.state.postal}&city=${this.state.city}`
+        const url= `http://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&appid=${this.state.api_key}`
 
         axios.get(url)
         .then(response => {
-            this.props.currentWeather(response.data.data)
-            
-        })
+            this.props.currentWeather(response.data) 
 
+            this.setState(({error: ''}))
+        }) 
+        .catch(error => {
+            this.props.currentWeather('') 
+            this.setState({
+                error: 'city not found'
+            })
+        })
     }
  
     render() {
@@ -72,13 +82,14 @@ export default class Form extends Component {
                    <div className="form-group">
                       <label htmlFor="city">City</label>
                       <input type="text" className="form-control" id="city" name="city" value={this.state.city}  onChange={this.handleChange}/> 
+                     <p className="text-danger" >{this.state.error}</p> 
                     </div>
 
-                    <div className="form-group">
+                    {/* <div className="form-group">
                       <label htmlFor="postal">Postal/Zip code</label>
                       <input type="text" className="form-control" id="postal" name="postal" value={this.state.postal} onChange={this.handleChange} /> 
-                    </div> 
-                    <button className="btn btn-warning mr-5" onClick={this.handleHourly}>show hourly weather</button>
+                    </div>  */}
+                    {/* <button className="btn btn-warning mr-5" onClick={this.handleHourly}>show hourly weather</button> */}
                      <button className="btn btn-success" onClick={this.handleNow}>show weather now</button>
                        
                  </form>
