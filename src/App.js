@@ -2,28 +2,31 @@ import './App.css';
 import Form from './components/Form';
 import React, { Component } from 'react'
 import ResultNow from './components/ResultNow'
+import ForecastResult from './components/ForecastResult';
 
 class App extends Component {
 
   state = {
     cW: '',
-    dF: ''
+    forecastData: ''
   }
 
   currentWeather = (cW) => {
     this.setState({ cW })
   }
+ 
 
-  dailyForcast = (dF)=>{
-    console.log(dF);
+  weatherForecast =(forecastData) => {
+     this.setState({forecastData})
   }
 
   render() {
     return (
       <div className="App">
         <div className="container">
-          <Form currentWeather={this.currentWeather} dailyForcast={this.dailyForcast} />
+          <Form currentWeather={this.currentWeather} dailyForcast={this.dailyForcast} weatherForecast={this.weatherForecast} />
           {this.state.cW ? <ResultNow cW={this.state.cW} /> : null}
+          <ForecastResult forecastData={this.state.forecastData} />
         </div>
       </div>
     );

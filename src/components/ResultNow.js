@@ -20,7 +20,7 @@ export default class Result extends Component {
               <h6 className="mt-0">CURRENT CONDITIONS</h6>
                 <div> 
                     <div>Temperature:  {this.roundTemp(cW.main.temp - 273.15)}
-                    &#8451; <span><img src={`http://openweathermap.org/img/wn/${cW.weather[0].icon}.png`} /> </span></div>
+                    &#8451; <span><img src={`http://openweathermap.org/img/wn/${cW.weather[0].icon}.png`}  alt="weathericon"/> </span></div>
                     <div >
                      <ul>
                             <li className="dd"><b>Real Feel: {this.roundTemp(cW.main.feels_like - 273.15)}</b>    

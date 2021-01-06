@@ -13,6 +13,21 @@ class Form extends Component {
         lat: ''
     }
 
+
+    timeConverter(UNIX_timestamp) {
+        const a = new Date(UNIX_timestamp * 1000);
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const year = a.getFullYear();
+        const month = months[a.getMonth()];
+        const date = a.getDate();
+        var hour = a.getHours();
+        var min = a.getMinutes();
+        var sec = a.getSeconds();
+        var time = date + ' ' + month + ' ' + year;
+        return time;
+    }
+
+
     getTodayDate() {
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
@@ -46,8 +61,8 @@ class Form extends Component {
 
         const response = await axios.get(forcastUrl)
 
-        console.log(response);
-    }
+        
+       this.props.weatherForecast(response.data);    }
 
     componentDidUpdate(prevProps, prevState) {
         const { city, api_key } = this.state;
@@ -80,6 +95,7 @@ class Form extends Component {
     }
 
     render() {
+ 
         return (
             <div> 
                 <form className="bg-light">
@@ -88,7 +104,7 @@ class Form extends Component {
                         <label htmlFor="city">City</label>
                         <input type="text" className="form-control" id="city" name="city" value={this.state.city} onChange={this.handleChange} />
                     </div> 
-                    <button className="btn btn-warning mr-5" onClick={this.handleForcast}>Show Daily weather</button>
+                    <button className="btn btn-warning mr-5" onClick={this.handleForcast}>Show forecast weather</button>
                     <button className="btn btn-success" onClick={this.handleNow}>Show weather now</button> 
                     <p className="text-danger p-3">{this.state.error}</p>
                 </form> 
