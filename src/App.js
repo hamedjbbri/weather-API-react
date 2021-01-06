@@ -6,18 +6,23 @@ import ResultNow from './components/ResultNow'
 class App extends Component {
 
   state = {
-    cW: ''
+    cW: '',
+    dF: ''
   }
 
   currentWeather = (cW) => {
     this.setState({ cW })
   }
 
+  dailyForcast = (dF)=>{
+    console.log(dF);
+  }
+
   render() {
     return (
       <div className="App">
         <div className="container">
-          <Form currentWeather={this.currentWeather} />
+          <Form currentWeather={this.currentWeather} dailyForcast={this.dailyForcast} />
           {this.state.cW ? <ResultNow cW={this.state.cW} /> : null}
         </div>
       </div>

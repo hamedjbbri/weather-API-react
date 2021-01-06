@@ -16,6 +16,7 @@ export default class Result extends Component {
          
         return (
             <div className="result">
+                <h2>The weather in {cW.name}</h2>
               <h6 className="mt-0">CURRENT CONDITIONS</h6>
                 <div> 
                     <div>Temperature:  {this.roundTemp(cW.main.temp - 273.15)}
@@ -23,9 +24,7 @@ export default class Result extends Component {
                     <div >
                      <ul>
                             <li className="dd"><b>Real Feel: {this.roundTemp(cW.main.feels_like - 273.15)}</b>    
-                            <span className="ml-4 float-right">   </span> </li>
-                     
-                     
+                            <span className="ml-4 float-right">   </span> </li> 
                             <li className="dd"><b>Humidity:</b>         
                               <span className="ml-4 float-right">{cW.main.humidity}% </span></li>
                     
