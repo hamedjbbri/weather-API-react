@@ -26,7 +26,7 @@ class App extends Component {
         <div className="container">
           <Form currentWeather={this.currentWeather} dailyForcast={this.dailyForcast} weatherForecast={this.weatherForecast} />
           {this.state.cW ? <ResultNow cW={this.state.cW} /> : null}
-          <ForecastResult forecastData={this.state.forecastData} />
+          {this.state.forecastData ? <ForecastResult forecastData={this.state.forecastData} /> : null}
         </div>
       </div>
     );

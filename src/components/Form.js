@@ -14,19 +14,7 @@ class Form extends Component {
     }
 
 
-    timeConverter(UNIX_timestamp) {
-        const a = new Date(UNIX_timestamp * 1000);
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const year = a.getFullYear();
-        const month = months[a.getMonth()];
-        const date = a.getDate();
-        var hour = a.getHours();
-        var min = a.getMinutes();
-        var sec = a.getSeconds();
-        var time = date + ' ' + month + ' ' + year;
-        return time;
-    }
-
+   
 
     getTodayDate() {
         var today = new Date();
