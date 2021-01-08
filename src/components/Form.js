@@ -89,8 +89,8 @@ class Form extends Component {
                 <form className="bg-light">
                     <h3 className="text-danger">Weahter API</h3>
                     <div className="form-group">
-                        <label htmlFor="city">City</label>
-                        <input type="text" className="form-control" id="city" name="city" value={this.state.city} onChange={this.handleChange} />
+                      
+                        <input type="text" className="form-control" id="city" name="city" value={this.state.city} onChange={this.handleChange} placeholder="Enter city name" />
                     </div> 
                     <button className="btn btn-warning mr-5" onClick={this.handleForcast}>Show forecast weather</button>
                     <button className="btn btn-success" onClick={this.handleNow}>Show weather now</button> 
